@@ -3,7 +3,7 @@ from udpwkpf import WuClass, Device
 import sys
 from udpwkpf_io_interface import *
 
-IOT_Magnetic_Pin = 7
+IOT_Magnetic_Pin = int(sys.argv[4])
 
 class IOT_Magnetic(WuClass):
     def __init__(self):
@@ -35,7 +35,7 @@ if __name__ == "__main__":
             self.obj_iot_magnetic = self.addObject(m.ID)
 
     if len(sys.argv) <= 2:
-        print 'python %s <gip> <dip>:<port> <magnetic#>' % sys.argv[0]
+        print 'python %s <gip> <dip>:<port> <magnetic#> <pin#>' % sys.argv[0]
         print '      <gip>: IP addrees of gateway'
         print '      <dip>: IP address of Python device'
         print '      <port>: An unique port number'
