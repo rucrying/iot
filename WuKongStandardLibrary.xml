@@ -214,7 +214,7 @@
     </WuClass>
     <!-- IOT Final -->
     <WuClass name="IOT_Magnetic" id="1018" virtual="false" type="hard">
-        <property name="value" access="readonly" datatype="boolean"  />
+        <property name="value" access="readonly" datatype="short"  />
         <property name="refresh_rate" access="readwrite" datatype="refresh_rate" default="100"  />
     </WuClass>
     <WuClass name="IOT_Redlight" id="1019" virtual="false" type="hard">
