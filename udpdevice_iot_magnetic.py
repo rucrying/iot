@@ -3,6 +3,13 @@ from udpwkpf import WuClass, Device
 import sys
 from udpwkpf_io_interface import *
 
+if len(sys.argv) <= 2:
+        print 'python %s <gip> <dip>:<port> <magnetic#> <pin#>' % sys.argv[0]
+        print '      <gip>: IP addrees of gateway'
+        print '      <dip>: IP address of Python device'
+        print '      <port>: An unique port number'
+        print ' ex. python %s 192.168.4.7 127.0.0.1:3000' % sys.argv[0]
+        sys.exit(-1)
 IOT_Magnetic_Pin = int(sys.argv[4])
 
 class IOT_Magnetic(WuClass):
@@ -33,14 +40,6 @@ if __name__ == "__main__":
             m = IOT_Magnetic()
             self.addClass(m,0)
             self.obj_iot_magnetic = self.addObject(m.ID)
-
-    if len(sys.argv) <= 2:
-        print 'python %s <gip> <dip>:<port> <magnetic#> <pin#>' % sys.argv[0]
-        print '      <gip>: IP addrees of gateway'
-        print '      <dip>: IP address of Python device'
-        print '      <port>: An unique port number'
-        print ' ex. python %s 192.168.4.7 127.0.0.1:3000' % sys.argv[0]
-        sys.exit(-1)
 
     d = MyDevice(sys.argv[1],sys.argv[2])
     reactor.run()
