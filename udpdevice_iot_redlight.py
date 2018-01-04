@@ -14,7 +14,7 @@ if len(sys.argv) <= 2:
         print '      <port>: An unique port number'
         print ' ex. python %s 192.168.4.7 127.0.0.1:3000' % sys.argv[0]
         sys.exit(-1)
-IOT_Redlight_Pin = sys.argv[4]
+IOT_Redlight_Pin = int(sys.argv[4])
 
 class IOT_Redlight(WuClass):
     def __init__(self):
@@ -36,13 +36,13 @@ class IOT_Redlight(WuClass):
             else:
                 if abs(initial_value - current_value) > initial_value/3:
                     blocked = 1
-                    obj.setProperty(0,2) 
+                    obj.setProperty(0,2+10*int(sys.argv[3])) 
                 else:
                     if blocked == 0:
-                        obj.setProperty(0,0)
+                        obj.setProperty(0,0+10*int(sys.argv[3]))
                     else:
                         blocked = 0
-                        obj.setProperty(0,1)                            
+                        obj.setProperty(0,1+10*int(sys.argv[3]))                            
         except IOError:
             print "Error"
 

@@ -22,7 +22,7 @@ class IOT_Magnetic(WuClass):
         try:
             current_value = digital_read(self.IO)
             if current_value == 1:
-                obj.setProperty(0,sys.argv[3])
+                obj.setProperty(0,int(sys.argv[3]))
             elif current_value == 0:
                 obj.setProperty(0,-1)                                           
             else:
