@@ -3,6 +3,15 @@ from udpwkpf import WuClass, Device
 import sys
 from udpwkpf_io_interface import *
 
+'''
+python udpdevice_iot_redlight.py <gip> <dip>:<port> <redlight#> <pin#>
+<redlight#>紅外線編號
+<pin#>腳位編號
+若正在被擋住則回傳 磁力編號*10+2
+若沒人經過回傳 磁力編號*10
+若剛好有人經過回傳 磁力編號*10+1 
+'''
+
 init = 1 
 initial_value = -1 
 blocked = 0

@@ -3,6 +3,14 @@ from udpwkpf import WuClass, Device
 import sys
 from udpwkpf_io_interface import *
 
+'''
+python udpdevice_iot_magnetic.py : <magnetic#> <pin#>
+其中magnetic#是磁力編號
+pin#是可以指定是哪個pin腳
+若有磁力經過此磁力偵測器會回傳磁力偵測器編號
+平常回傳-1
+'''
+
 if len(sys.argv) <= 2:
         print 'python %s <gip> <dip>:<port> <magnetic#> <pin#>' % sys.argv[0]
         print '      <gip>: IP addrees of gateway'
