@@ -31,6 +31,7 @@ class IOT_Redlight(WuClass):
         try:
             current_value = analog_read(self.IO)
             print "IOT_Redlight value: %d" % current_value
+            '''    
             if init < 10:
                 initial_value = current_value
                 obj.setProperty(0,-1)
@@ -44,7 +45,9 @@ class IOT_Redlight(WuClass):
                         obj.setProperty(0,0+10*int(sys.argv[3]))
                     else:
                         blocked = 0
-                        obj.setProperty(0,1+10*int(sys.argv[3]))                            
+                        obj.setProperty(0,1+10*int(sys.argv[3]))
+                        '''
+            obj.setProperty(0,1) 
         except IOError:
             print "Error"
 
