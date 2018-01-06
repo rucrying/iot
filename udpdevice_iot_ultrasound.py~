@@ -4,7 +4,15 @@ import sys
 from udpwkpf_io_interface import *
 import time
 
-
+'''
+python udpdevice_iot_ultrasound.py <gip> <dip>:<port> <ultrasound#> <echo#> <trig#>
+<redlight#>紅外線編號
+<echo#>,<trig#>腳位編號
+在前1秒的時候會先傳-1
+若正在被擋住則回傳  編號*10+2
+若沒人經過回傳  編號*10
+若剛好有人經過回傳  編號*10+1 
+'''
 
 if len(sys.argv) <= 2:
         print 'python %s <gip> <dip>:<port> <ultrasound#> <echo#> <trig#>' % sys.argv[0]

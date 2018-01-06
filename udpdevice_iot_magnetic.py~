@@ -6,7 +6,7 @@ from udpwkpf_io_interface import *
 
 
 if len(sys.argv) <= 2:
-	print 'python %s <gip> <dip>:<port> <magnetic#> <pin#>' % sys.argv[0]
+        print 'python %s <gip> <dip>:<port> <magnetic#> <pin#>' % sys.argv[0]
         print '      <gip>: IP addrees of gateway'
         print '      <dip>: IP address of Python device'
         print '      <port>: An unique port number'
