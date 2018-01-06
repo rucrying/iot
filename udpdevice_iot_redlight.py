@@ -22,14 +22,14 @@ class IOT_Redlight(WuClass):
     def __init__(self):
         WuClass.__init__(self)
         self.loadClass('IOT_Redlight')
-        self.IO = pin_mode(IOT_Redlight_Pin, PIN_TYPE_ANALOG, PIN_MODE_INPUT)
+        self.IO = pin_mode(IOT_Redlight_Pin, PIN_TYPE_DIGITAL, PIN_MODE_INPUT)
 
     def update(self,obj,pID=None,val=None):
         global initial_value
         global init
         global blocked
         try:
-            current_value = analog_read(self.IO)
+            current_value = digital_read(self.IO)
             print "IOT_Redlight value: %d" % current_value
             '''    
             if init < 10:
