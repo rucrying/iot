@@ -12,7 +12,7 @@ if len(sys.argv) <= 2:
     print ' ex. python %s 192.168.4.7 127.0.0.1:3000' % sys.argv[0]
     sys.exit(-1)
 
-man_count_pin=int(sys.argv[4])
+man_count_pin=int(sys.argv[3])
 
 censor_status=[0,0]
 class man_count(WuClass):
@@ -32,16 +32,14 @@ class man_count(WuClass):
                     censor_status[0]=0
                     censor_status[1]=0
         elif(pID == 1):
-                status = val%10
-                if censor_status[0]==0:
-                    censor_status[1]=1;
-                    obj.setProperty(2,0)
-                elif censor_status[0] == 1:
-                    obj.setProperty(2,1*man_count_pin)
-                    censor_status[0]=0
-                    censor_status[1]=0
-        except IOError:
-            print "Error"
+        	status = val%10
+            if censor_status[0]==0:
+            	censor_status[1]=1;
+                obj.setProperty(2,0)
+            elif censor_status[0] == 1:
+                obj.setProperty(2,1*man_count_pin)
+                censor_status[0]=0
+                censor_status[1]=0
 
 if __name__ == "__main__":
     class MyDevice(Device):
