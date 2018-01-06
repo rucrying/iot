@@ -47,7 +47,7 @@ class IOT_Redlight(WuClass):
                         blocked = 0
                         obj.setProperty(0,1+10*int(sys.argv[3]))
                         '''
-            obj.setProperty(0,1) 
+            obj.setProperty(0,current_value) 
         except IOError:
             print "Error"
 
