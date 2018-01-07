@@ -20,29 +20,32 @@ initial_value = -1
 init = 1
 blocked = 0
 
+echo = pin_mode(IOT_Ultrasound_Echo, PIN_TYPE_DIGITAL, PIN_MODE_INPUT)
+trig = pin_mode(IOT_Ultrasound_Trig,PIN_TYPE_DIGITAL,PIN_MODE_OUTPUT)
+
+def send_pulse():
+    digital_write(trig,1)
+    time.sleep(0.001)
+    digital_write(trig,0)
+
+def wait_echo(boolean):
+    while digital_read(echo) != boolean:
+        continue
+def get_dis():
+    send_pulse()
+    wait_echo(1)
+    start = time.time()
+    wait_echo(0)
+    finish = time.time()
+    return 170*(finish - start)*100 
+
+
 class IOT_Ultrasound(WuClass):
     def __init__(self):
         WuClass.__init__(self)
         self.loadClass('IOT_Ultrasound')
-        self.echo = pin_mode(IOT_Ultrasound_Echo, PIN_TYPE_DIGITAL, PIN_MODE_INPUT)
-        self.trig = pin_mode(IOT_Ultrasound_Trig,PIN_TYPE_DIGITAL,PIN_MODE_OUTPUT)
-
-    def send_pulse():
-        digital_write(self.trig,1)
-        time.sleep(0.001)
-        digital_write(self.trig,0)
-
-    def wait_echo(boolean):
-        while digital_read(self.echo) != boolean:
-            continue
-
-    def get_dis():
-        send_pulse()
-        wait_echo(1)
-        start = time.time()
-        wait_echo(0)
-        finish = time.time()
-        return 170*(finish - start)*100  
+        
+ 
 
     def update(self,obj,pID=None,val=None):
         try:
@@ -51,17 +54,17 @@ class IOT_Ultrasound(WuClass):
             if init < 10:
                 initial_value = current_value
                 init = init + 1
-                obj.setProperty(0,-1)
+                obj.setProperty(0,0)
             else:
                 if abs(initial_value - current_value) > initial_value/3:
                     blocked = 1
-                    obj.setProperty(0,2+10*int(sys.argv[3]))
+                    obj.setProperty(0,1)
                 else:
                     if blocked == 0:
-                        obj.setProperty(0,0+10*int(sys.argv[3]))
+                        obj.setProperty(0,0)
                     else:
                         blocked = 0
-                        obj.setProperty(0,1+10*int(sys.argv[3]))
+                        obj.setProperty(0,0)
         except IOError:
             print "Error"
 
